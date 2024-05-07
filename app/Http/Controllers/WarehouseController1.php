@@ -12,7 +12,15 @@ class WarehouseController extends Controller
     public function index()
     {
         $warehouses=Warehouse::all();
-        return response()->json($warehouses);
+         return response()->json($warehouses);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -32,12 +40,20 @@ class WarehouseController extends Controller
      */
     public function show(string $id)
     {
-        $warehouse=Warehouse::find($id);
+       $warehouse=Warehouse::find($id);
        if(!empty($warehouse)){
         return response()->json($warehouse);
        }else{
         return response()->json(["message"=>"warehouse Not Found"],404);
        }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        
     }
 
     /**
@@ -52,7 +68,7 @@ class WarehouseController extends Controller
         $warehouse->save();
         return  response()->json(["message"=>"Warehouse Updated"]);
         }else{
-            return  response()->json(["message"=>"Warehouse Not Found"],404);
+            return  response()->json(["message"=>"WarehouseNot Found"],404);
         }
     }
 
@@ -66,7 +82,7 @@ class WarehouseController extends Controller
             $warehouse->delete();
            return response()->json(["message"=>"Warehouse Deleted Successfully"]);
         }else{
-            return  response()->json(["message"=>"Warehouse Not Found"],404);
+            return  response()->json(["message"=>"WarehouseNot Found"],404);
         }
     }
 }

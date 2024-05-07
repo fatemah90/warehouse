@@ -21,9 +21,4 @@ Route::get('/', function () {
 Route::get('/token', function () {
     return csrf_token(); 
 });
-// route::get('/warehouses',[WarehouseController::class,'index']);
-// route::get('/warehouse/{id}',[WarehouseController::class,'show']);
-route::get('/i/{id}',[ItemController::class,'update']);
-// route::put('/warehouse/{id}',[WarehouseController::class,'update']);
-// route::delete('/warehouse/{id}',[WarehouseController::class,'delete']);
-// Route::resource('/item',ItemController::class);
+Route::get('/warehouse/{id}',[WarehouseController::class,'show']);

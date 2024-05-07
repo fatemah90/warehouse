@@ -17,6 +17,14 @@ class ItemController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -28,6 +36,15 @@ class ItemController extends Controller
         $item->category_id=$request->category_id;
         $categoryName=Category::find($request->category_id)->name;
         $item->item_code=substr($item->name, 0, 1).substr($categoryName, 0, 1).substr($categoryName,-1).substr($request->commercial_name, 0, 1).str_pad(strlen($request->commercial_name),3,0,STR_PAD_LEFT);
+ 
+        
+        // $item->name="aga";
+        // $item->commercial_name="dghfji";
+        // $item->price=30.00;
+        // $item->category_id=1;
+        // $categoryName=Category::find( $item->category_id)->name;
+        // $item->item_code=substr($item->name, 0, 1).substr($categoryName, 0, 1).substr($categoryName,-1).substr($request->commercial_name, 0, 1).str_pad(strlen($request->commercial_name),3,0,STR_PAD_LEFT);
+        // dd( $item->item_code);
         $item->save();
         return response()->json(["message"=>"Item Stored Successfully!"],201);
     }
@@ -46,10 +63,18 @@ class ItemController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
+    {  
         $item=Item::find($id);
         if(!empty($item)){
         $item->name=is_null($request->name)? $item->name:$request->name;
@@ -58,7 +83,7 @@ class ItemController extends Controller
         $item->category_id=is_null($request->category_id)? $item->category_id:$request->category_id;
         $categoryName=Category::find($item->category_id)->name;
         $item->item_code=is_null($request->item_code)? $item->item_code:substr($item->name, 0, 1).substr($categoryName, 0, 1).substr($categoryName,-1).substr($request->commercial_name, 0, 1).str_pad(strlen($request->commercial_name),3,0,STR_PAD_LEFT);
-        // dd( $item);
+// dd( $item);
 
         $item->save();
         return  response()->json(["message"=>"Item Updated"]);
